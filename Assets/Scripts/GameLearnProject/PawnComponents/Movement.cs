@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PawnComponents
+namespace GameLearnProject.PawnComponents
 {
     public class Movement : MonoBehaviour
     {
