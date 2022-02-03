@@ -1,19 +1,13 @@
+using GameLearnProject.PawnComponents.Interfaces;
 using UnityEngine;
 
 namespace GameLearnProject.PawnComponents
 {
-    public class Rotation : MonoBehaviour
+    public class Rotation : MonoBehaviour, IRotation
     {
-        // Start is called before the first frame update
-        void Start()
+        public void Rotate()
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            
         }
     }
 }

@@ -1,19 +1,21 @@
+using GameLearnProject.PawnComponents.Interfaces;
 using UnityEngine;
+using Zenject;
 
 namespace GameLearnProject
 {
     public class Enemy : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        private IMovement _movement;
+        private IRotation _rotation;
+        private IAttack _attack;
         
-        }
-
-        // Update is called once per frame
-        void Update()
+        [Inject]
+        private void Constructor(IMovement movement, IRotation rotation, IAttack attack)
         {
-        
+            _movement = movement;
+            _rotation = rotation;
+            _attack = attack;
         }
     }
 }

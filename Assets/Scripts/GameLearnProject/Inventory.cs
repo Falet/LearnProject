@@ -1,19 +1,18 @@
+using System.Collections.Generic;
+using GameLearnProject.ItemsComponents.Interfaces;
 using UnityEngine;
+using Zenject;
 
 namespace GameLearnProject
 {
     public class Inventory : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        private List<IItem> _items;
         
-        }
-
-        // Update is called once per frame
-        void Update()
+        [Inject]
+        private void Constructor(List<IItem> items)
         {
-        
+            _items = items;
         }
     }
 }

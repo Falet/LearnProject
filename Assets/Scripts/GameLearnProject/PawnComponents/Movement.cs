@@ -1,19 +1,23 @@
+using GameLearnProject.PawnComponents.Interfaces;
 using UnityEngine;
+using UnityEngine.AI;
+using Zenject;
 
 namespace GameLearnProject.PawnComponents
 {
-    public class Movement : MonoBehaviour
+    public class Movement : MonoBehaviour, IMovement
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        private NavMeshAgent _navMeshAgent;
 
-        // Update is called once per frame
-        void Update()
+        [Inject]
+        private void Constructor(NavMeshAgent navMeshAgent)
         {
+            _navMeshAgent = navMeshAgent;
+        }
         
+        public void Move()
+        {
+            
         }
     }
 }
