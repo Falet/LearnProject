@@ -13,6 +13,8 @@ namespace GameLearnProject.PawnComponents
         private void Constructor(IMeleeWeapon weapon)
         {
             _weapon = weapon;
+
+            Debug.Log(weapon.NameWeapon);  
         }
         
         public void Attack()
