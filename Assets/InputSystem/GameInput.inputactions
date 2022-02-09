@@ -1,0 +1,40 @@
+{
+    "name": "GameInput",
+    "maps": [
+        {
+            "name": "Input",
+            "id": "fffa0c91-5811-4d62-bfed-3ec1d96495a9",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "f675a5f0-9d22-4c03-9f75-b0a0df6f47e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "75cf8b48-04be-49cf-8bff-27f08eed7e0b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": []
+        }
+    ]
+}

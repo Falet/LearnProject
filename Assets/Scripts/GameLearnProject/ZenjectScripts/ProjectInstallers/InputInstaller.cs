@@ -7,7 +7,7 @@ namespace GameLearnProject.ZenjectScripts.ProjectInstallers
     {
         public override void InstallBindings()
         {
-            Container.Bind<InputManager>().AsSingle();
+            Container.Bind<InputManager>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
         }
     }
 }
