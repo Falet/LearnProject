@@ -5,19 +5,19 @@ using Zenject;
 
 namespace GameLearnProject.PawnComponents
 {
-    public class RangeAttack : MonoBehaviour, IAttack
+    public class AttackController : MonoBehaviour, IAttack
     {
-        private IRangeWeapon _weapon;
+        private IWeapon _weapon;
 
         [Inject]
-        private void Constructor(IRangeWeapon weapon)
+        private void Constructor(IWeapon weapon)
         {
             _weapon = weapon;
         }
-
         
         public void Attack()
         {
+            
         }
     }
 }

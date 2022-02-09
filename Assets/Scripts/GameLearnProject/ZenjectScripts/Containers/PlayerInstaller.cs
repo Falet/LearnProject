@@ -1,4 +1,5 @@
-﻿using GameLearnProject.PawnComponents;
+﻿using GameLearnProject.ItemsComponents.Interfaces;
+using GameLearnProject.PawnComponents;
 using GameLearnProject.PawnComponents.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,15 +14,18 @@ namespace GameLearnProject.ZenjectScripts.Containers
 
         public override void InstallBindings()
         {
-            Container.Bind<NavMeshAgent>().FromNewComponentOn(_containerForComponents).AsSingle().NonLazy();
-            Container.Bind<IMovement>().To<Movement>().FromNewComponentOn(_containerForComponents).AsSingle().NonLazy();
-            Container.Bind<IRotation>().To<Rotation>().FromNewComponentOn(_containerForComponents).AsSingle().NonLazy();
+            Container.Bind<NavMeshAgent>().FromComponentOnRoot().AsSingle().NonLazy();
+            Container.Bind<IMovement>().To<Movement>().FromComponentOn(_containerForComponents).AsSingle().NonLazy();
+            Container.Bind<IRotation>().To<Rotation>().FromComponentOn(_containerForComponents).AsSingle().NonLazy();
+
+            Container.BindInterfacesAndSelfTo<IWeapon>().FromSubContainerResolve().ByNewContextPrefab(_prefabWeapon)
+                .UnderTransform(_containerForComponents.transform).AsSingle().NonLazy();
+
+            Container.Bind<IAttack>().To<AttackController>().FromComponentOn(_containerForComponents).AsSingle().NonLazy();
             
-            Container.Bind<IAttack>().To<MeleeAttack>().FromSubContainerResolve().ByNewContextPrefab(_prefabWeapon).AsSingle().NonLazy();
+            Container.Bind<Inventory>().FromComponentOn(_containerForComponents).AsSingle().NonLazy();
             
-            Container.Bind<Inventory>().FromNewComponentOn(_containerForComponents).AsSingle().NonLazy();
-            
-            Container.Bind<Player>().FromNewComponentOn(_containerForComponents).AsSingle().NonLazy();
+            Container.Bind<Player>().FromComponentOn(_containerForComponents).AsSingle().NonLazy();
         }
     }
 }

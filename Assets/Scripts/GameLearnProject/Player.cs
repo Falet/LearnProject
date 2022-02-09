@@ -13,11 +13,11 @@ namespace GameLearnProject
         private Inventory _inventory;
         
         [Inject]
-        private void Constructor(IMovement movement, IRotation rotation, IAttack attack, Inventory inventory)
+        private void Constructor(IMovement movement, IRotation rotation/*, IAttack attack*/, Inventory inventory)
         {
             _movement = movement;
             _rotation = rotation;
-            _attack = attack;
+            //_attack = attack;
             _inventory = inventory;
         }
     }

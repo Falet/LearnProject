@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5511118937876225615
+--- !u!1 &4617498760025049998
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2151178695826242238}
-  - component: {fileID: 8890648050361430685}
-  - component: {fileID: 1282814861816419536}
-  - component: {fileID: 8247606316480563266}
+  - component: {fileID: 1024346596506614124}
+  - component: {fileID: 4178953119975342270}
+  - component: {fileID: 3213158585138205243}
+  - component: {fileID: 7563335883999003446}
   m_Layer: 0
-  m_Name: Knife
+  m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2151178695826242238
+--- !u!4 &1024346596506614124
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5511118937876225615}
+  m_GameObject: {fileID: 4617498760025049998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8890648050361430685
+--- !u!114 &4178953119975342270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5511118937876225615}
+  m_GameObject: {fileID: 4617498760025049998}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
@@ -47,33 +47,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 1282814861816419536}
+  - {fileID: 3213158585138205243}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
---- !u!114 &1282814861816419536
+--- !u!114 &3213158585138205243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5511118937876225615}
+  m_GameObject: {fileID: 4617498760025049998}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bface576533041edbac825e2517ccc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _containerWeapon: {fileID: 5511118937876225615}
---- !u!114 &8247606316480563266
+  _containerWeapon: {fileID: 4617498760025049998}
+--- !u!114 &7563335883999003446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5511118937876225615}
+  m_GameObject: {fileID: 4617498760025049998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5a4048289e9b8c43bb79358c1ca8415, type: 3}
+  m_Script: {fileID: 11500000, guid: d80f708b07214d1095871c919a1c9063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameWeapon: Knife

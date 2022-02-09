@@ -1,6 +1,4 @@
-﻿using GameLearnProject.ItemsComponents;
-using GameLearnProject.ItemsComponents.Interfaces;
-using GameLearnProject.PawnComponents;
+﻿using GameLearnProject.ItemsComponents.Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -8,13 +6,11 @@ namespace GameLearnProject.ZenjectScripts.Containers
 {
     public class WeaponInstaller : MonoInstaller
     {
-        [SerializeField] private GameObject _containerForComponent;
+        [SerializeField] private GameObject _containerWeapon;
         
         public override void InstallBindings()
         {
-            Container.Bind<IMeleeWeapon>().To<Knife>().FromNewComponentOn(_containerForComponent).AsSingle().NonLazy();
-            
-            Container.Bind<MeleeAttack>().FromNewComponentOn(_containerForComponent).AsSingle().NonLazy();
+            Container.Bind<IWeapon>().FromInstance(_containerWeapon.GetComponent<IWeapon>()).AsSingle().NonLazy();
         }
     }
 }
