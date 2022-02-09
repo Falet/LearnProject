@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace GameLearnProject.ZenjectScripts.Containers
+namespace GameLearnProject.ZenjectScripts.GameObjectInstallers
 {
     public class WeaponInstaller : MonoInstaller
     {

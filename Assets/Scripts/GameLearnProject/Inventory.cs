@@ -13,8 +13,6 @@ namespace GameLearnProject
         private void Constructor(List<IItem> items)
         {
             _items = items;
-
-            Debug.Log(_items.Count);
         }
     }
 }

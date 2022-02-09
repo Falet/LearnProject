@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-namespace GameLearnProject.ZenjectScripts.Containers
+namespace GameLearnProject.ZenjectScripts.GameObjectInstallers
 {
     public class PlayerInstaller : MonoInstaller
     {

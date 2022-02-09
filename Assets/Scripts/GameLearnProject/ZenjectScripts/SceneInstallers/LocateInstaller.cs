@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace GameLearnProject.ZenjectScripts.Containers
+namespace GameLearnProject.ZenjectScripts.SceneInstallers
 {
     public class LocateInstaller : MonoInstaller
     {

@@ -2,7 +2,7 @@
 
 namespace GameLearnProject.Input
 {
-    public class PlayerInput : MonoBehaviour
+    public class InputManager
     {
         
     }
