@@ -3,7 +3,7 @@ using GameLearnProject.ItemsComponents.Interfaces;
 using UnityEngine;
 using Zenject;
 
-namespace GameLearnProject
+namespace GameLearnProject.PawnComponents
 {
     public class Inventory : MonoBehaviour
     {

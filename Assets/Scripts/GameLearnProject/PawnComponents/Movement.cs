@@ -1,23 +1,31 @@
 using GameLearnProject.PawnComponents.Interfaces;
 using UnityEngine;
-using UnityEngine.AI;
 using Zenject;
 
 namespace GameLearnProject.PawnComponents
 {
     public class Movement : MonoBehaviour, IMovement
     {
-        private NavMeshAgent _navMeshAgent;
+        [SerializeField] private float speed;
+        [SerializeField] private Transform _transformForMove;
+
+        private Vector3 _currentChanges;
 
         [Inject]
-        private void Constructor(NavMeshAgent navMeshAgent)
-        {
-            _navMeshAgent = navMeshAgent;
-        }
-        
-        public void Move()
+        private void Constructor()
         {
             
+        }
+        
+        public void Move(Vector2 changeMovement)
+        {
+            _currentChanges.x = changeMovement.x;
+            _currentChanges.z = changeMovement.y;
+        }
+        
+        private void FixedUpdate()
+        {
+            _transformForMove.Translate(_currentChanges * speed * Time.fixedDeltaTime);
         }
     }
 }

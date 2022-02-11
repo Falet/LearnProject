@@ -10,7 +10,7 @@ namespace GameLearnProject.ZenjectScripts.GameObjectInstallers
         
         public override void InstallBindings()
         {
-            Container.Bind<IWeapon>().FromInstance(_containerWeapon.GetComponent<IWeapon>()).AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<IWeapon>().FromInstance(_containerWeapon.GetComponent<IWeapon>()).AsSingle().NonLazy();
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿namespace GameLearnProject.PawnComponents.Interfaces
+﻿using UnityEngine;
+
+namespace GameLearnProject.PawnComponents.Interfaces
 {
     public interface IRotation
     {
-        void Rotate();
+        void Rotate(Vector2 delta);
     }
 }

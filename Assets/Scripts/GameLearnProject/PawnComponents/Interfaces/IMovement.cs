@@ -1,7 +1,9 @@
-﻿namespace GameLearnProject.PawnComponents.Interfaces
+﻿using UnityEngine;
+
+namespace GameLearnProject.PawnComponents.Interfaces
 {
     public interface IMovement
     {
-        void Move();
+        void Move(Vector2 changeMovement);
     }
 }

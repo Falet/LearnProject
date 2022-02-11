@@ -9,12 +9,9 @@ namespace GameLearnProject.ItemsComponents
         public string _nameWeapon = "Knife";
         public string NameWeapon => _nameWeapon;
         
-        private Player _player;
-
         [Inject]
-        private void Constructor(Player player)
+        private void Constructor()
         {
-            _player = player;
             
         }
     }
