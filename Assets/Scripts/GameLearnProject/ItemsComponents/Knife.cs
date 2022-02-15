@@ -1,3 +1,4 @@
+using System;
 using GameLearnProject.ItemsComponents.Interfaces;
 using UnityEngine;
 using Zenject;
@@ -13,6 +14,11 @@ namespace GameLearnProject.ItemsComponents
         private void Constructor()
         {
             
+        }
+
+        public Guid GetGuid()
+        {
+            return Guid.NewGuid();
         }
     }
 }

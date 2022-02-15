@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using GameLearnProject.ItemsComponents.Interfaces;
+﻿using GameLearnProject.ItemsComponents.Interfaces;
 using GameLearnProject.ItemsComponents.ItemContainer.Interfaces;
+using GameLearnProject.LoaderScripts;
+using GameLearnProject.LoaderScripts.Interfaces;
 using GameLearnProject.PawnComponents;
 using UnityEngine;
 using Zenject;
@@ -15,9 +16,11 @@ namespace GameLearnProject.ZenjectScripts.GameObjectInstallers.ContainerInstalle
         {
             Container.Bind<IContainer>().FromInstance(_containerOfScripts.GetComponent<IContainer>()).AsSingle()
                 .NonLazy();
+
+            Container.BindIFactory<Object, IItem>().FromFactory<Loader.FactoryItems>().NonLazy();
+            Container.Bind<ILoader>().To<Loader>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
+
             Container.Bind<Inventory>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
-            
-            //Container.Bind<IItem>().FromSubContainerResolve().ByNewContextPrefab().AsCached().NonLazy();
         }
     }
 }

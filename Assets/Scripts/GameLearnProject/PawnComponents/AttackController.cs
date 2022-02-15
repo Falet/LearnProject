@@ -1,4 +1,4 @@
-﻿using GameLearnProject.ItemsComponents.Interfaces;
+﻿using GameLearnProject.LoaderScripts.Interfaces;
 using GameLearnProject.PawnComponents.Interfaces;
 using UnityEngine;
 using Zenject;
@@ -7,12 +7,12 @@ namespace GameLearnProject.PawnComponents
 {
     public class AttackController : MonoBehaviour, IAttack
     {
-        private IWeapon _weapon;
+        private ILoader _loader;
 
         [Inject]
-        private void Constructor(IWeapon weapon)
+        private void Constructor(ILoader loader, Inventory inventory)
         {
-            _weapon = weapon;
+            _loader = loader;
         }
         
         public void Attack()

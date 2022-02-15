@@ -1,4 +1,6 @@
 ﻿using GameLearnProject.ItemsComponents.Interfaces;
+using GameLearnProject.LoaderScripts;
+using GameLearnProject.LoaderScripts.Interfaces;
 using GameLearnProject.PawnComponents;
 using GameLearnProject.PawnComponents.Interfaces;
 using GameLearnProject.PlayerScripts;
@@ -28,14 +30,14 @@ namespace GameLearnProject.ZenjectScripts.GameObjectInstallers
             Container.Bind<TypeViewController>().FromSubContainerResolve().ByNewContextPrefab(_prefabTypeView)
                 .UnderTransform(_playerTrasnform.transform).AsSingle().NonLazy();
 
-            Container.BindInterfacesAndSelfTo<IWeapon>().FromSubContainerResolve().ByNewContextPrefab(_prefabWeapon)
-                .UnderTransform(_containerOfScripts.transform).AsSingle().NonLazy();
-
             Container.Bind<IAttack>().To<AttackController>().FromComponentOn(_containerOfScripts).AsSingle()
                 .NonLazy();
-            
+
+
+            Container.BindIFactory<Object, IItem>().FromFactory<Loader.FactoryItems>().NonLazy();
+            Container.Bind<ILoader>().To<Loader>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
+
             Container.Bind<Inventory>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
-            
             Container.Bind<Player>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
         }
     }
