@@ -1,4 +1,5 @@
-﻿using GameLearnProject.ItemsComponents.Interfaces;
+﻿using Cysharp.Threading.Tasks;
+using GameLearnProject.ItemsComponents.Interfaces;
 using GameLearnProject.LoaderScripts;
 using GameLearnProject.LoaderScripts.Interfaces;
 using GameLearnProject.PawnComponents;
@@ -6,6 +7,7 @@ using GameLearnProject.PawnComponents.Interfaces;
 using GameLearnProject.PlayerScripts;
 using GameLearnProject.PlayerScripts.TypeView;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace GameLearnProject.ZenjectScripts.GameObjectInstallers
@@ -33,9 +35,8 @@ namespace GameLearnProject.ZenjectScripts.GameObjectInstallers
             Container.Bind<IAttack>().To<AttackController>().FromComponentOn(_containerOfScripts).AsSingle()
                 .NonLazy();
 
-
-            Container.BindIFactory<Object, IItem>().FromFactory<Loader.FactoryItems>().NonLazy();
-            Container.Bind<ILoader>().To<Loader>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
+            Container.BindIFactory<AssetReference, UniTask<IItem>>().FromFactory<LoaderItems.FactoryItems>().NonLazy();
+            Container.Bind<ILoader>().To<LoaderItems>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
 
             Container.Bind<Inventory>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
             Container.Bind<Player>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();

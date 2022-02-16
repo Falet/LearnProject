@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabsItem:
-  - {fileID: 5511118937876225615, guid: 7e679de9f00734447a22cb0e99d4be56, type: 3}
+  - {fileID: 11400000, guid: d8ac45f91964c4e4c851a1e4bc88aefa, type: 2}
 --- !u!1 &7990853820541952498
 GameObject:
   m_ObjectHideFlags: 0

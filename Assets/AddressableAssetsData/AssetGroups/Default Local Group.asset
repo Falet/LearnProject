@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 5ad34b86a9c666c49827f61a73e68df0
+  m_SerializeEntries:
+  - m_GUID: 7e679de9f00734447a22cb0e99d4be56
+    m_Address: Knife
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Item
+  - m_GUID: d503f8f2b9d4c0b4684bc86e106abb07
+    m_Address: Bow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Item
+  - m_GUID: 0ae447faaa2a0b6419272017184585c4
+    m_Address: Box
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 6aae94b137afe744299a09c59de0ef46, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7495b8c1a1508b0458fb21f86a89f35b, type: 2}
+    - {fileID: 11400000, guid: eaf51e5a7397d1946b89c76cec620c30, type: 2}
