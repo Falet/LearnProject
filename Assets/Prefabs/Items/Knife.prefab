@@ -158,4 +158,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a4048289e9b8c43bb79358c1ca8415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameWeapon: Knife

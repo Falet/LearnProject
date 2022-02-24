@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using GameLearnProject.ReferenceTypeForSerializedData.ItemsData;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -9,6 +9,6 @@ namespace GameLearnProject.ReferenceTypeForSerializedData
     {
         public AssetReference _prefabContainer;
 
-        public List<ItemData> Items;
+        public ItemData[] Items;
     }
 }

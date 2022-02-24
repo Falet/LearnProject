@@ -2,7 +2,8 @@
 using Cysharp.Threading.Tasks;
 using GameLearnProject.ItemsComponents.Interfaces;
 using GameLearnProject.LoaderScripts.Interfaces;
-using GameLearnProject.ReferenceTypeForSerializedData;
+using GameLearnProject.ReferenceTypeForSerializedData.ItemsData;
+using GameLearnProject.ZenjectScripts.GameObjectInstallers;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
@@ -13,25 +14,29 @@ namespace GameLearnProject.LoaderScripts
     {
         [SerializeField] private List<ItemData> _prefabsItem;
         
-        private IFactory<AssetReference, UniTask<IItem>> _factoryItem;
+        private IFactory<ItemData, UniTask<IItem>> _factoryItem;
         private List<IItem> _items;
+        private ItemData[] _dateItems;
 
         [Inject]
-        private async UniTaskVoid Constructor(IFactory<AssetReference, UniTask<IItem>> factoryItem)
+        private async void Constructor(IFactory<ItemData, UniTask<IItem>> factoryItem)
         {
             _factoryItem = factoryItem;
             
             _items = new List<IItem>();
+            await CreateItems();
+        }
+
+        private async UniTask CreateItems()
+        {
             if (_prefabsItem == null)
             {
                 return;
             }
-            
+
             foreach (var itemData in _prefabsItem)
             {
-                var item = await _factoryItem.Create(itemData.PrefabItem);
-                
-                item.SetData(itemData.ItemSerializedData);
+                var item = await _factoryItem.Create(itemData);
 
                 _items.Add(item);
             }
@@ -44,28 +49,27 @@ namespace GameLearnProject.LoaderScripts
 
         #region Factory
 
-        public class FactoryItems : IFactory<AssetReference, UniTask<IItem>>
+        public class FactoryItems : IFactory<ItemData, UniTask<IItem>>
         {
             private readonly DiContainer _container;
-        
+
             public FactoryItems(DiContainer container)
             {
                 _container = container;
             }
 
-            public async UniTask<IItem> Create(AssetReference assetReference)
+            public async UniTask<IItem> Create(ItemData assetReference)
             {
-                if (assetReference.Asset == null && assetReference.IsValid() == false)
-                {
-                    await assetReference.LoadAssetAsync<GameObject>();
-                }
-                else if(assetReference.IsValid())
-                {
-                    await assetReference.OperationHandle;
-                }
+                var gameObjectItem = await assetReference.PrefabItem.InstantiateAsync();
+                
+                var item = gameObjectItem.GetComponent<IItem>();
 
-                var gameObjectItem = assetReference.Asset;
-                return _container.InstantiatePrefabForComponent<IItem>(gameObjectItem);
+                _container.Inject(item, new object[]
+                {
+                    assetReference.ItemSerializedData
+                });
+
+                return item;
             }
         }
 

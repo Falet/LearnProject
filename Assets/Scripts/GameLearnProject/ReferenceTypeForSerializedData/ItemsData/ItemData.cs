@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace GameLearnProject.ReferenceTypeForSerializedData
+namespace GameLearnProject.ReferenceTypeForSerializedData.ItemsData
 {
     [CreateAssetMenu(fileName = "ItemData", menuName = "SerializedData/ItemData")]
     public class ItemData : ScriptableObject

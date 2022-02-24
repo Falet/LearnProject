@@ -14,16 +14,20 @@ namespace GameLearnProject.PawnComponents
         private Dictionary<Guid, IItem> _items;
         
         [Inject]
-        private void Constructor(ILoader loader)
+        private void Constructor(/*ILoader loader*/)
         {
-            /*_loader = loader;
+            //_loader = loader;
+            //_items = new Dictionary<Guid, IItem>();
+            //GetItemsFromLoader();
+        }
 
-            var items = _loader.GetItems();
-            _items = new Dictionary<Guid, IItem>();
-            foreach (var item in items)
-            {
-                _items.Add(item.GetGuid(), item);
-            }*/
+        private void GetItemsFromLoader()
+        {
+            //var items = _loader.GetItems();
+            //foreach (var item in items)
+            //{
+            //    _items.Add(item.GetGuid(), item);
+            //}
         }
 
         public IItem GetItem(Guid itemGuid)

@@ -10,9 +10,9 @@ namespace GameLearnProject.PawnComponents
         private ILoader _loader;
 
         [Inject]
-        private void Constructor(ILoader loader, Inventory inventory)
+        private void Constructor(/*ILoader loader, Inventory inventory*/)
         {
-            _loader = loader;
+            //_loader = loader;
         }
         
         public void Attack()

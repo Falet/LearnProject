@@ -1,7 +1,7 @@
 using System;
 using GameLearnProject.ItemsComponents.Interfaces;
-using GameLearnProject.ItemsComponents.Weapons.WeaponsData;
 using GameLearnProject.ReferenceTypeForSerializedData;
+using GameLearnProject.ReferenceTypeForSerializedData.ItemsData.WeaponsData;
 using UnityEngine;
 using Zenject;
 
@@ -12,21 +12,20 @@ namespace GameLearnProject.ItemsComponents.Weapons
         private KnifeData _knifeData;
         
         public string NameWeapon => _knifeData.NameWeapon;
-        
+
         [Inject]
-        private void Constructor()
+        public void Constructor(ItemSerializedData data)
         {
-            
+            _knifeData = (KnifeData)data;
         }
 
         public Guid GetGuid()
         {
-            return Guid.NewGuid();
-        }
-
-        public void SetData(ItemSerializedData data)
-        {
-            _knifeData = (KnifeData) data;
+            if (_knifeData.GuidItem == Guid.Empty)
+            {
+                _knifeData.GuidItem = Guid.NewGuid();
+            }
+            return _knifeData.GuidItem;
         }
     }
 }

@@ -65,9 +65,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _containerOfScripts: {fileID: 5709865941053586501}
-  _prefabWeapon: {fileID: 5511118937876225615, guid: 7e679de9f00734447a22cb0e99d4be56, type: 3}
   _playerTrasnform: {fileID: 4959805929957104622}
+  _prefabContainer: {fileID: 0}
   _prefabTypeView: {fileID: 5506040031471926545, guid: df64778e535b77e4199ade2bdf471e0a, type: 3}
+  _prefabWeapon: {fileID: 5511118937876225615, guid: 7e679de9f00734447a22cb0e99d4be56, type: 3}
+  _itemData: {fileID: 11400000, guid: d8ac45f91964c4e4c851a1e4bc88aefa, type: 2}
 --- !u!1 &4959805929957104622
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefabsItem:
   - {fileID: 11400000, guid: d8ac45f91964c4e4c851a1e4bc88aefa, type: 2}
+  - {fileID: 11400000, guid: c9d9d65a88741ac418717208d07ceb8b, type: 2}
 --- !u!1 &7990853820541952498
 GameObject:
   m_ObjectHideFlags: 0

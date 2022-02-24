@@ -1,7 +1,7 @@
 ﻿using System;
 using GameLearnProject.ItemsComponents.Interfaces;
-using GameLearnProject.ItemsComponents.Weapons.WeaponsData;
 using GameLearnProject.ReferenceTypeForSerializedData;
+using GameLearnProject.ReferenceTypeForSerializedData.ItemsData.WeaponsData;
 using UnityEngine;
 using Zenject;
 
@@ -14,19 +14,18 @@ namespace GameLearnProject.ItemsComponents.Weapons
         private BowData _bowData;
 
         [Inject]
-        private void Constructor()
+        public void Constructor(ItemSerializedData data)
         {
-            
+            _bowData = (BowData)data;
         }
 
         public Guid GetGuid()
         {
-            return Guid.NewGuid();
-        }
-
-        public void SetData(ItemSerializedData data)
-        {
-            _bowData = (BowData) data;
+            if (_bowData.GuidItem == Guid.Empty)
+            {
+                _bowData.GuidItem = Guid.NewGuid();
+            }
+            return _bowData.GuidItem;
         }
     }
 }

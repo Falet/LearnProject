@@ -1,7 +1,6 @@
-﻿using GameLearnProject.ReferenceTypeForSerializedData;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace GameLearnProject.ItemsComponents.Weapons.WeaponsData
+namespace GameLearnProject.ReferenceTypeForSerializedData.ItemsData.WeaponsData
 {
     [CreateAssetMenu(fileName = "KnifeData", menuName = "SerializedData/KnifeData")]
     public class KnifeData : ItemSerializedData

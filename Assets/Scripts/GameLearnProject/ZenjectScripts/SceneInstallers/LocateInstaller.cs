@@ -1,5 +1,4 @@
-﻿using GameLearnProject.ItemsComponents.ItemContainer.Interfaces;
-using GameLearnProject.PlayerScripts;
+﻿using GameLearnProject.PlayerScripts;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +12,7 @@ namespace GameLearnProject.ZenjectScripts.SceneInstallers
         public override void InstallBindings()
         {
             Container.Bind<Player>().FromSubContainerResolve().ByNewContextPrefab(_playerObject).AsSingle().NonLazy();
-            Container.Bind<IContainer>().FromSubContainerResolve().ByNewContextPrefab(_prefabContainerForLoot).AsSingle().NonLazy();
+            //Container.Bind<IContainer>().FromSubContainerResolve().ByNewContextPrefab(_prefabContainerForLoot).AsSingle().NonLazy();
         }
     }
 }
