@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameLearnProject.ReferenceTypeForSerializedData
 {
-    public class ItemSerializedData : ScriptableObject
+    public abstract class ItemSerializedData : ScriptableObject
     {
         public Guid GuidItem;
     }

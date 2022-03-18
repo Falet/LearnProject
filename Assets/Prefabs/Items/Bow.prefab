@@ -90,8 +90,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1024346596506614124}
-  - component: {fileID: 4178953119975342270}
-  - component: {fileID: 3213158585138205243}
+  - component: {fileID: 1676112367490632682}
+  - component: {fileID: 4264789142151440118}
   - component: {fileID: 7563335883999003446}
   m_Layer: 0
   m_Name: Bow
@@ -115,7 +115,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4178953119975342270
+--- !u!114 &1676112367490632682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,11 +129,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 3213158585138205243}
+  - {fileID: 4264789142151440118}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
---- !u!114 &3213158585138205243
+--- !u!114 &4264789142151440118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

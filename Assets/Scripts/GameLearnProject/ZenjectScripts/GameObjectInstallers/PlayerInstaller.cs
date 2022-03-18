@@ -6,7 +6,6 @@ using GameLearnProject.PawnComponents;
 using GameLearnProject.PawnComponents.Interfaces;
 using GameLearnProject.PlayerScripts;
 using GameLearnProject.PlayerScripts.TypeView;
-using GameLearnProject.ReferenceTypeForSerializedData;
 using GameLearnProject.ReferenceTypeForSerializedData.ItemsData;
 using UnityEngine;
 using Zenject;
@@ -38,10 +37,8 @@ namespace GameLearnProject.ZenjectScripts.GameObjectInstallers
 
             Container.Bind<IAttack>().To<AttackController>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
 
-            Container.BindIFactory<ItemData, UniTask<IItem>>().FromFactory<LoaderItems.FactoryItems>().NonLazy();
-            //Container.Bind<ILoader>().To<LoaderItems>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
-
-            //Container.BindFactory<ItemSerializedData, IWeapon, WeaponInstaller.Factory>().FromFactory<WeaponInstaller.Factory>();
+            Container.BindIFactory<ItemData, UniTask<IItem>>().FromFactory<LoaderItems.FactoryItems<IItem, ItemData>>().NonLazy();
+            Container.Bind<ILoader>().To<LoaderItems>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
 
             Container.Bind<Inventory>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
             Container.Bind<Player>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();

@@ -1,6 +1,5 @@
 ﻿using System;
 using GameLearnProject.ItemsComponents.Interfaces;
-using GameLearnProject.ReferenceTypeForSerializedData;
 using GameLearnProject.ReferenceTypeForSerializedData.ItemsData.WeaponsData;
 using UnityEngine;
 using Zenject;
@@ -14,9 +13,9 @@ namespace GameLearnProject.ItemsComponents.Weapons
         private BowData _bowData;
 
         [Inject]
-        public void Constructor(ItemSerializedData data)
+        public void Constructor(BowData data)
         {
-            _bowData = (BowData)data;
+            _bowData = data;
         }
 
         public Guid GetGuid()

@@ -109,6 +109,60 @@ namespace Zenject
                 PostInstall();
             }
         }
+        
+        public void Install(DiContainer parentContainer, IEnumerable<object> extraArgs) 
+        {
+            Assert.That(_parentContainer == null || _parentContainer == parentContainer);
+
+            // We allow calling this explicitly instead of relying on the [Inject] event above
+            // so that we can follow the two-pass construction-injection pattern in the providers
+            if (_hasInstalled) 
+            {
+                return;
+            }
+
+            _hasInstalled = true;
+
+            Assert.IsNull(_container);
+            _container = parentContainer.CreateSubContainer();
+
+            // Do this after creating DiContainer in case it's needed by the pre install logic
+            if (PreInstall != null)
+            {
+                PreInstall();
+            }
+
+            var injectableMonoBehaviours = new List<MonoBehaviour>();
+
+            GetInjectableMonoBehaviours(injectableMonoBehaviours);
+
+            foreach (var instance in injectableMonoBehaviours)
+            {
+                if (instance is MonoKernel)
+                {
+                    Assert.That(ReferenceEquals(instance, _kernel),
+                        "Found MonoKernel derived class that is not hooked up to GameObjectContext.  If you use MonoKernel, you must indicate this to GameObjectContext by dragging and dropping it to the Kernel field in the inspector");
+                }
+
+                _container.QueueForInject(instance);
+            }
+
+            _container.IsInstalling = true;
+
+            try
+            {
+                InstallBindings(injectableMonoBehaviours, extraArgs);
+            }
+            finally
+            {
+                _container.IsInstalling = false;
+            }
+
+            if (PostInstall != null)
+            {
+                PostInstall();
+            }
+        }
 
         void ResolveAndStart() 
         {
@@ -198,6 +252,27 @@ namespace Zenject
 
             InstallSceneBindings(injectableMonoBehaviours);
             InstallInstallers();
+        }
+        
+        void InstallBindings(List<MonoBehaviour> injectableMonoBehaviours, IEnumerable<object> extraArgs)
+        {
+            _container.DefaultParent = transform;
+
+            _container.Bind<Context>().FromInstance(this);
+            _container.Bind<GameObjectContext>().FromInstance(this);
+
+            if (_kernel == null)
+            {
+                _container.Bind<MonoKernel>()
+                    .To<DefaultGameObjectKernel>().FromNewComponentOn(gameObject).AsSingle().NonLazy();
+            }
+            else
+            {
+                _container.Bind<MonoKernel>().FromInstance(_kernel).AsSingle().NonLazy();
+            }
+
+            InstallSceneBindings(injectableMonoBehaviours);
+            InstallInstallers(extraArgs);
         }
     }
 }

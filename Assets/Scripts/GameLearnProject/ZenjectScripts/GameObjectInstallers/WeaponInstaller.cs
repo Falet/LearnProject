@@ -1,5 +1,4 @@
-﻿using GameLearnProject.ItemsComponents.Interfaces;
-using GameLearnProject.ReferenceTypeForSerializedData;
+﻿using GameLearnProject.ReferenceTypeForSerializedData;
 using UnityEngine;
 using Zenject;
 
@@ -9,11 +8,18 @@ namespace GameLearnProject.ZenjectScripts.GameObjectInstallers
     {
         [SerializeField] private GameObject _containerWeapon;
 
+        private ItemSerializedData _itemSerializedData;
+
+        [Inject]
+        private void Constructor(ItemSerializedData itemSerializedData)
+        {
+            _itemSerializedData = itemSerializedData;
+        }
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<IWeapon>().FromInstance(_containerWeapon.GetComponent<IWeapon>()).AsSingle().NonLazy();
-
+            Container.Bind(_itemSerializedData.GetType())
+                .FromInstance(_itemSerializedData).AsSingle().NonLazy();
         }
     }
 }

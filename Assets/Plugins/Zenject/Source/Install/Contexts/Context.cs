@@ -139,6 +139,12 @@ namespace Zenject
             InstallInstallers(
                 _normalInstallers, _normalInstallerTypes, _scriptableObjectInstallers, _monoInstallers, _installerPrefabs);
         }
+        
+        protected void InstallInstallers(IEnumerable<object> extraArgs)
+        {
+            InstallInstallers(
+                _normalInstallers, _normalInstallerTypes, _scriptableObjectInstallers, _monoInstallers, _installerPrefabs, extraArgs);
+        }
 
         protected void InstallInstallers(
             List<InstallerBase> normalInstallers,
@@ -210,7 +216,86 @@ namespace Zenject
                     "Found null installer in '{0}'", GetType());
 
                 Container.Inject(installer);
+#if ZEN_INTERNAL_PROFILING
+                using (ProfileTimers.CreateTimedBlock("User Code"))
+#endif
+                {
+                    installer.InstallBindings();
+                }
+            }
+        }
+        
+        protected void InstallInstallers(
+            List<InstallerBase> normalInstallers,
+            List<Type> normalInstallerTypes,
+            List<ScriptableObjectInstaller> scriptableObjectInstallers,
+            List<MonoInstaller> installers,
+            List<MonoInstaller> installerPrefabs, 
+            IEnumerable<object> extraArgs)
+        {
+            CheckInstallerPrefabTypes(installers, installerPrefabs);
 
+            // Ideally we would just have one flat list of all the installers
+            // since that way the user has complete control over the order, but
+            // that's not possible since Unity does not allow serializing lists of interfaces
+            // (and it has to be an inteface since the scriptable object installers only share
+            // the interface)
+            //
+            // So the best we can do is have a hard-coded order in terms of the installer type
+            //
+            // The order is:
+            //      - Normal installers given directly via code
+            //      - ScriptableObject installers
+            //      - MonoInstallers in the scene
+            //      - Prefab Installers
+            //
+            // We put ScriptableObject installers before the MonoInstallers because
+            // ScriptableObjectInstallers are often used for settings (including settings
+            // that are injected into other installers like MonoInstallers)
+
+            var allInstallers = normalInstallers.Cast<IInstaller>()
+                .Concat(scriptableObjectInstallers.Cast<IInstaller>())
+                .Concat(installers.Cast<IInstaller>()).ToList();
+
+            foreach (var installerPrefab in installerPrefabs)
+            {
+                Assert.IsNotNull(installerPrefab, "Found null installer prefab in '{0}'", GetType());
+
+                GameObject installerGameObject;
+
+#if ZEN_INTERNAL_PROFILING
+                using (ProfileTimers.CreateTimedBlock("GameObject.Instantiate"))
+#endif
+                {
+                    installerGameObject = GameObject.Instantiate(installerPrefab.gameObject);
+                }
+
+                installerGameObject.transform.SetParent(transform, false);
+                var installer = installerGameObject.GetComponent<MonoInstaller>();
+
+                Assert.IsNotNull(installer, "Could not find installer component on prefab '{0}'", installerPrefab.name);
+
+                allInstallers.Add(installer);
+            }
+
+            foreach (var installerType in normalInstallerTypes)
+            {
+                var installer = (InstallerBase)Container.Instantiate(installerType);
+
+#if ZEN_INTERNAL_PROFILING
+                using (ProfileTimers.CreateTimedBlock("User Code"))
+#endif
+                {
+                    installer.InstallBindings();
+                }
+            }
+
+            foreach (var installer in allInstallers)
+            {
+                Assert.IsNotNull(installer,
+                    "Found null installer in '{0}'", GetType());
+
+                Container.Inject(installer, extraArgs);
 #if ZEN_INTERNAL_PROFILING
                 using (ProfileTimers.CreateTimedBlock("User Code"))
 #endif

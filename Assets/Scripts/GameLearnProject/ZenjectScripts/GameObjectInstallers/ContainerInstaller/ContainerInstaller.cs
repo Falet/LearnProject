@@ -19,7 +19,7 @@ namespace GameLearnProject.ZenjectScripts.GameObjectInstallers.ContainerInstalle
             Container.Bind<IContainer>().FromInstance(_containerOfScripts.GetComponent<IContainer>()).AsSingle()
                 .NonLazy();
 
-            Container.BindIFactory<ItemData, UniTask<IItem>>().FromFactory<LoaderItems.FactoryItems>().NonLazy();
+            Container.BindIFactory<ItemData, UniTask<IItem>>().FromFactory<LoaderItems.FactoryItems<IItem, ItemData>>().NonLazy();
             Container.Bind<ILoader>().To<LoaderItems>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();
 
             Container.Bind<Inventory>().FromComponentOn(_containerOfScripts).AsSingle().NonLazy();

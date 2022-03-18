@@ -2302,6 +2302,29 @@ namespace Zenject
                 ZenPools.DespawnList(monoBehaviours);
             }
         }
+        
+        public void InjectGameObject(GameObject gameObject, IEnumerable<object> extraArgs1)
+        {
+            FlushBindings();
+
+            ZenUtilInternal.AddStateMachineBehaviourAutoInjectersUnderGameObject(gameObject);
+
+            var monoBehaviours = ZenPools.SpawnList<MonoBehaviour>();
+            try
+            {
+                ZenUtilInternal.GetInjectableMonoBehavioursUnderGameObject(gameObject, monoBehaviours);
+
+                for (int i = 0; i < monoBehaviours.Count; i++)
+                {
+                    InjectExplicit(
+                        monoBehaviours[i], InjectUtil.CreateArgList(extraArgs1));
+                }
+            }
+            finally
+            {
+                ZenPools.DespawnList(monoBehaviours);
+            }
+        }
 
         // Same as InjectGameObject except it will also search the game object for the
         // given component, and also optionally allow passing extra inject arguments into the
